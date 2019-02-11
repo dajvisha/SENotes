@@ -25,6 +25,7 @@ Interviewers evaluate:
 
 
 **Problem-solving skills are valuable**
+
 If you're able to work through several hard problems (with some help), you're probably pretty good at developing optimal algorithms. You are smart. Smart people tend to do good things, and that's valuable at a company.
 
 Interviewers assess you relative to other candidates on the same question by the same interviewer. It's a relative comparison. Your interviewer develops a feel for your performance by comparing you to other people. 
