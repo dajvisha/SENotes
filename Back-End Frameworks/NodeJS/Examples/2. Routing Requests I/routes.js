@@ -1,5 +1,19 @@
-const http = require('http');
 const fs = require('fs');
+
+const requestHandler = function (req, res) {
+    const url = req.url;
+    const method = req.method;
+
+    if (url === '/') {
+        return mainPage(res);
+    }
+    
+    if (url === '/message' && method === 'POST') {
+        return messagePage(req, res);
+    }
+        
+    return errorPage(res);
+};
 
 const mainPage = function (res) {
     let resMessage = `
@@ -50,31 +64,12 @@ const messagePage = function(req, res) {
     req.on('end', () => {
         const parseBody = Buffer.concat(body).toString();
         const message = parseBody.split('=')[1];
-        fs.writeFileSync('message.txt', message);
+         fs.writeFile('message.txt', message, (err) => {
+            res.statusCode = 302;
+            res.setHeader('Location', '/');
+            return res.end()
+        });
     });
-    
-    res.statusCode = 302;
-    res.setHeader('Location', '/');
-    return res.end()
-}
+};
 
-const serverRouter = function (req, res) {
-    const url = req.url;
-    const method = req.method;
-
-    if (url === '/') {
-        return mainPage(res);
-    }
-    
-    if (url === '/message' && method === 'POST') {
-        return messagePage(req, res);
-    }
-        
-    return errorPage(res);
-}
-
-const server = http.createServer((req, res) => {
-    serverRouter(req, res);
-});
-
-server.listen(3000);
+module.exports = requestHandler;
