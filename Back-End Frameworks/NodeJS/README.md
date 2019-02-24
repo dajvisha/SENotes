@@ -1,6 +1,8 @@
 # NodeJS
 
-### How the Web Works
+<img src="https://bit.ly/2T7nwyA" width="250"/>
+
+## How the Web Works
 
 1. Browser request a URL.
 2. A DNS maps a URL to an IP.
@@ -9,7 +11,7 @@
 
 Requests and responses are processed using **HTTP** or **HTTPS**. HTTP means Hyper Text Transfer Protocol, and it is a protocol to format and transfer data across the web. 
 
-### Core Modules
+## NodeJS Core Modules
 
 1. **http**: Launch a server, and send requests.
 2. **https**: Launch a SSL server.
@@ -19,8 +21,18 @@ Requests and responses are processed using **HTTP** or **HTTPS**. HTTP means Hyp
 
 ### Create a server
 
-**Create a server - option 1**
 ```js
+// Example 1 - Create a server
+const http = require('http');
+
+const server = http.createServer((req, resp) => {
+    // code
+});
+server.listen(3000);
+```
+
+```js
+// Example 2 - Create a server
 const http = require('http');
 
 const requesListener = function (req, resp) {
@@ -28,32 +40,22 @@ const requesListener = function (req, resp) {
 }
 
 const server = http.createServer(requestListener);
-
 server.listen(3000);
 ```
 
-**Create a server - option 2**
-```js
-const http = require('http');
-
-const server = http.createServer((req, resp) => {
-    // code
-});
-
-server.listen(3000);
-```
-
-**Request attributes**
+### Request attributes and Response methods
 
 ```js
+// Request attributes
+
 req.url // Returns the requested path, example: /home
 req.method // Returns the request method, example: GET
 req.headers // Returns the request's headers
 ```
 
-**Response methods**
-
 ```js
+// Request methods
+
 res.setHeaders(); // Configure response headers, example: Content-Type
 res.write(); // Configure response body
 res.end(); // Send back a response
@@ -79,6 +81,38 @@ req.on('end', () => {
 });
 ```
 
+### Event Driven Code Execution
+
+The order of execution is not the same as you have written your program. Remember NodeJS is aynchronous. 
+
+```js
+req.on("end", () => {
+    // This code could be executed after the server respond to the client
+    const parsedBoddy = Buffer.concat(reqMessage).toString();
+    const message = parseBody.split('=')[1]
+    fs.writeFileSync('message.txt', message);
+});
+
+res.statusCode = 302;
+res.setHeader('Location', '/');
+
+return res.end();
+```
+
+### Sync and Async function
+
+When you are writting NodeJS applications you allways must use async functions. Sync functions blocks your server until the function's process end. 
+
+```js
+fs.writeFyleSync('fileName.txt', message);
+
+// Async functions receives a callback function
+// Callback functions are executed when the main function was completed
+fs.writeFile('fileName.txt', message, (err) => {
+    // code
+})
+```
+
 ### The Node Lifecycle & Event Loop
 
 **NodeJS Program Lifecycle**
@@ -88,3 +122,96 @@ req.on('end', () => {
 3. Parse code, register variables and functions.
 4. **Event Loop**: Keeps on running as long as there are event listeners registered. 
 5. **process.exit()**: ends the event loop.
+
+### Single Thread, Event Loop & Blocking Code
+
+NodeJS uses only one single thread. To handle multiple request NodeJS uses the **Event Loop**. The Event Loop starts automatically when a NodeJS server starts. The Event Loop is responsible for handling **callbacks**. The Event Loop will only handle callbacks that contain fast finish code. 
+
+The async function, or functions that do not run fast, are sended to the **Worker Pool**. This Worker Pool is detached from JavaScript code, and it runs in different threads. When a worker is done, it will trigger its corresponding fallback from the Event Loop. 
+
+The **Event Loop** keeps the NodeJS process running, and it has an order to go through the callbacks. The process is:
+
+1. **Timers** - It checks if there are any timer callbacks it should execute. For example: `setTimeout` and `setInterval`.
+2. **Pending Callbacks** - Execute callbacks that were deferred. For example: `I/O-related`.
+3. **Poll** - Retrieve new I/O events, and execute their callbacks. 
+4. **Check** - Execute `setImmediate()` callbacks. 
+5. **Close Callbacks** - Execute all 'close' event callbacks. 
+
+### Exporting and Importing modules
+
+```js
+// Example 1
+module.exports = requestHandler;
+
+const routes = require('./routes.js');
+```
+
+```js
+// Example 2
+module.exports = {
+    handler: requestHandler,
+    someText: 'Some text'
+}
+
+const routes = require('./routes.js');
+const server = http.createServer(routes.handler);
+```
+
+```js
+// Example 3
+module.exports.handler = requestHandler;
+module.exports.someText = 'Some text'
+
+const routes = require('./routes.js');
+const server = http.createServer(routes.handler);
+```
+
+```js
+// Example 4
+exports.handler = requestHandler;
+exports.someText = 'Some text';
+
+const routes = require('./routes.js');
+const server = http.createServer(routes.handler);
+```
+
+### NPM
+
+NPM is package manager for NodeJS. It creates a file `package.json`.
+
+```
+// Start a npm project
+npm init
+```
+
+Inside `package.json` you can create your own scripts
+
+```js
+{
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "start-server": "node app,js"
+  }
+}
+```
+
+In order to run your own keys you need to execute
+
+```
+npm run start-server
+```
+
+### Installing 3rd Party Packages
+
+NPM allows you to install dependencies (3rd party node packeges) like expess, body-parser. This packages lives in the npm repository. 
+
+```
+npm install <package_nodemon>
+```
+
+You can install packages for development or for production. When you install a package, NodeJS stores them inside `node_modules`.
+
+* `npm install nodemon --save-dev`
+* `npm install nodemon --save`
+* `npm install nodemon -g`
