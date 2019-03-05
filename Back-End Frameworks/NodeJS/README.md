@@ -215,3 +215,37 @@ You can install packages for development or for production. When you install a p
 * `npm install nodemon --save-dev`
 * `npm install nodemon --save`
 * `npm install nodemon -g`
+
+## ExpressJS
+
+```js
+const express = require('express');
+const app = express();
+```
+
+### Middleware
+
+```js
+app.use((req, res, next) => {
+    console.log('In the middleware!');
+    // Allows the request to continue to the next middleware in line
+    next();
+});
+
+app.use((req, res, next) => {
+    console.log('In another middleware!');
+    res.send('<h1>Hello from Express!</h1>')
+})
+```
+
+### Handling different routes
+
+```js
+app.use('/add-product', (req, res, next) => {
+    res.send('<h1>The Add Product Page</h1>');
+});
+
+app.use('/', (req, res, next) => {
+    res.send('<h1>The Home Page</h1>');
+});
+```
