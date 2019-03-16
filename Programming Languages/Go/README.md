@@ -146,6 +146,37 @@ x = 100
 x := 100
 ```
 
+### Variables Scope
+
+A **variable scope** is the place in code where a variable can be accessed. 
+
+```go
+// Global variable
+
+var x = 4
+
+func f() {
+    fmt.Printf("%d", x)
+}
+
+func g() {
+    fmt.Printf("%d", x)
+}
+```
+
+```go
+// Local variable
+
+func f() {
+    var x = 4
+    fmt.Printf("%d", x)
+}
+
+func g() {
+    fmt.Printf("%d", x)
+}
+```
+
 ### Pointers and `new()`
 
 A **pointer** is an address to data in memory. There are two operators associated with pointers:
