@@ -145,3 +145,26 @@ x = 100
 // Short variable declaration (declaration and initialization together)
 x := 100
 ```
+
+### Pointers and `new()`
+
+A **pointer** is an address to data in memory. There are two operators associated with pointers:
+
+* `&` operator - returns the address of a function or variable.
+* `*` operator - returns data at an address (dereferencing). 
+
+The `new()` function is an alternative way to create a variable. It creates a variable and returns a pointer to the variable. 
+
+```go
+// Pointer example
+var x int = 1
+var y int
+var ip *int // ip is pointer to int
+
+ip = &x // ip points to x
+y = *ip // y is now 1
+
+// new() example
+ptr := new(int)
+*ptr = 3
+```
