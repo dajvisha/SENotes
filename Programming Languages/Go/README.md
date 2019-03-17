@@ -364,3 +364,106 @@ func main() {
     fmt.Printf("%d", *y)
 }
 ```
+
+### Controll Structures
+
+#### If
+
+```
+if <condition> {
+    <consequent>
+}
+```
+
+```go
+if x > 5 {
+    fmt.Printf("Yup")
+}
+```
+
+#### For Loops
+
+```
+for <init>; <cond>; <update> {
+    <stmts>
+} 
+```
+
+```go
+// Example 1
+for i := 0; i < 10; i++ {
+    fmt.Printf("Hi")
+}
+
+// Example 2
+i := 0
+for i < 10 {
+    fmt.Printf("Hi")
+    i++
+}
+
+// Example 3
+
+for {
+    fmt.Printf("Hi")
+}
+```
+
+#### Switch / Case
+
+```go
+switch x {
+    case 1:
+        fmt.Printf("case 1")
+    case 2:
+        fmt.Printf("case 2")
+    default:
+        fmt.Printf("nocase")
+}
+```
+
+#### Tagless Switch
+
+```go
+switch {
+    case x > 1:
+        fmt.Printf("case 1")
+    case x < -1:
+        fmt.Printf("case 2")
+    default:
+        fmt.Printf("nocase")
+}
+```
+
+#### Break and Continue
+
+```go
+// Break example
+for i := 0; i < 10; i++ {
+    if i == 5 {
+        break
+    }
+    fmt.Printf("Hi")
+}
+```
+
+```go
+// Continue example
+for i := 0; i < 10; i++ {
+    if i == 5 {
+        continue
+    }
+    fmt.Printf("Hi")
+}
+```
+
+#### Scan
+
+```go
+var apples int
+
+fmt.Printf("Number of apples?")
+num, err := fmt.Scan(&apples)
+
+fmt.Printf(apples)
+```
