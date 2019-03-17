@@ -199,3 +199,38 @@ y = *ip // y is now 1
 ptr := new(int)
 *ptr = 3
 ```
+
+### Deallocating memory
+
+When a varible is not longer needed, it should be **deallocated**.
+
+#### Stack and Heap.
+
+**Stack** is the area of memory dedicated to function calls. Local variables are stored in the **stack**. Deallocated after function completes. **Heap** is the percisten region of memory, you need to explicit deallocate memory from the heap. 
+
+#### Garbage Collection
+
+It is hard to determine when a variable is no longer in use. **Garbage collection** is an automatic tool which deals with memory deallocating. In an interpreted language garbage collection is done by the interpreter. 
+
+> **Go** is a compiled language which enables garbage collection. 
+
+In **Go** the compiler determines where to store, in the stack or in the heap. 
+
+```go
+// How to work with pointers in Go
+
+package main 
+
+import "fmt"
+
+func foo() *int {
+    x := 1
+    return &x
+}
+
+func main() {
+    var y *int
+    y = foo()
+    fmt.Printf("%d", *y)
+}
+```
