@@ -124,6 +124,136 @@ func main() {
 
 ## Go Basics
 
+### Printing
+
+```go
+name := "Diego"
+
+fmt.Printf("Hello " + name)
+fmr.Printf("Hello %s", name)
+```
+
+### Type conversion
+
+```go
+var x int32 = 1
+var y int64 = 2
+x = int32(y)
+```
+
+### Data Types: Int
+
+```go
+var x int
+```
+
+There are different lenghts for `int`:
+* `int8`
+* `int16`
+* `int32`
+* `int64`
+* `uint8`
+* `uint16`
+* `uint32`
+* `uint64`
+
+Binary operators:
+* Arithmetic: `+`, `-`, `*`, `/`, `%`, `<<`, `>>`
+* Comparison: `==`, `!=`, `>`, `<`, `>=`, `<=`
+* Boolean: `&&`, `||`
+
+### Data Type: Floating Point
+
+```go
+var x float32 = 123.45
+var x float64 = 1.2345e2 
+```
+
+There are different lenght for `float`:
+* `float32` - 6 digits of precision
+* `float64` - 12 digits of precision
+
+You also can declare complex numbers.
+
+```go
+var x complex128 = complex(2, 3)
+```
+
+### Data Type: String
+
+```go
+x := "Hi there"
+```
+
+A string is a sequence of arbitry bytes, and it is read only. 
+
+#### UNICODE Package
+
+```go
+// Test categories of run
+IsDigit(r rune)
+IsSpace(r rune)
+IsLetter(r rune)
+IsLower(r rune)
+IsPunct(r rune)
+
+// Perform conversions
+ToLower(r rune)
+ToUpper(r rune)
+```
+
+#### String Package
+
+```go
+// Compare strings
+Compare(a, b)
+Contains(s, substr)
+HasPrefix(s, prefix)
+Index(s, substr)
+
+// String manipulation
+Replace(s, old, new, n)
+ToLower(s)
+ToUpper(s)
+TrimSpace(s)
+```
+
+#### Strconv Package
+
+```go
+Atoi(s) 
+Itoa(s)
+FormatFloat(f, fmt, prec, bitSize)
+ParseFloat(s, bitSize)
+```
+
+### Constants
+
+A `constant` is an expression whose value is known at compile time. 
+
+```go
+const x = 1.3
+const (
+    y = 4
+    z = "Hi"
+)
+```
+
+#### Iota
+
+Generates a set of related bu distinct constants. Often represents a property which has several distinct possible values. For example: Days, Months.
+
+```go
+type Grade int
+const (
+    A Grade = iota
+    B
+    C
+    D
+    F
+)
+```
+
 ### Variables and Types
 
 ```go
