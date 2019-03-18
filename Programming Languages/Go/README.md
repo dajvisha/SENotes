@@ -467,3 +467,29 @@ num, err := fmt.Scan(&apples)
 
 fmt.Printf(apples)
 ```
+
+### Arrays
+
+An array is a fixed-length series of elements of a chosen type. 
+
+```go
+// Declaring an array
+var x [5]int
+
+// Accessing a particular element
+x[0] = 2
+fmt.Printf(x[1])
+
+// Array literal
+var x [5]int = [5]{1, 2, 3, 4, 5}
+y := [...]int{1, 2, 3, 4}
+```
+
+```go
+// Iterate over arrays
+x := [3]int{1, 2, 3}
+
+for i, v range x {
+    fmt.Printf("ind %d, val %d", i, v)
+}
+```
