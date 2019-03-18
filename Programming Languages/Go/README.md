@@ -559,3 +559,83 @@ The slice's size could be increased by `append()`. Adds elements to the end of t
 sl := make([]int, 0, 3)
 sl = append(sl, 100)
 ```
+
+### Hash Tables
+
+A **hash table** contains key/value pairs. Each **value** is associated with a **key**. A **hash function** is used to compute the slot for a key. 
+
+<img src="https://user-images.githubusercontent.com/6569241/54547544-8c8eae00-496b-11e9-8a63-28b4f3900bb0.png" width="500"/>
+
+#### Maps
+
+A **map** is the Go implementation for **hash tables**. 
+
+```go
+// Creating a map
+var idMap map[string]int
+
+// Creating a map using make()
+idMap := make(map[string]int)
+
+// Creating a map using map literals
+
+idMap := map[string]int {
+    "joe": 123
+}
+```
+
+```go
+// Accessing a map
+fmt.Println(idMap["joe"])
+
+// Adding or updating a kep/value pair
+idMap["jane"] = 456
+
+// Delete a key/value pair
+delete(idMap, "joe")
+```
+
+```go
+// Know if a key is on the map
+id, p := idMap["joe"]
+
+// Know the length of the map
+len(idMap)
+
+// Iterating over the map
+for key, val := range idMap {
+    fmt.Println(key, val)
+}
+```
+
+### Structs
+
+```go
+// Creating a struct
+type struct Person {
+    name string
+    addr string
+    phone string
+}
+
+// Initialize an struct with zero values
+p1 := new(Person)
+
+// Initialize an struct with values
+p1 := Person(
+    name: "joe",
+    addr: "street",
+    phone: "123"
+)
+```
+
+```go
+// Working with structs
+var p1 Person
+
+// Modifying a value
+p1.name = "joe"
+
+// Accesssing a value
+name = p1.name
+```
