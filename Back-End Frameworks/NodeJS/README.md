@@ -249,3 +249,149 @@ app.use('/', (req, res, next) => {
     res.send('<h1>The Home Page</h1>');
 });
 ```
+
+### HTTP Methods
+
+```js
+app.get('/products', (req, res, next) => {
+    // code
+});
+
+app.post('/add-product', (req, res, next) => {
+    // code
+});
+```
+
+### Parsers Middlewares 
+
+#### Body Parser
+
+```js
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const app = express();
+
+app.use(bodyParser.urlencoded({ extended: false })));
+
+app.use('/product', (req, res, next) => {
+    console.log(req.body);
+});
+```
+
+### Common Methods
+
+```js
+res.status(404);
+res.send('');
+res.sendFile();
+res.redirect('');
+```
+
+### Router
+
+```js
+// Admin Routes
+const express = require('express');
+const router = express.Router();
+
+router.get('/users', (req, res, next) => {
+    // code
+});
+
+module.export = router;
+```
+
+```js
+// App
+const express = require('express');
+import adminRoutes = require('./routes/admin');
+
+const app = express();
+
+// It points to /admin/users
+app.use('/admin', adminRoutes);
+```
+
+### Error Page
+
+```js
+const express = require('express');
+const app = express();
+
+app.use((req, res, next) => {
+    res.status(404).send('Page not found');
+})
+```
+
+### Sending Files
+
+```js
+const express = require('express');
+const path = require('path');
+
+const router = express.Router();
+
+router.get('/users', (req, res, next) => {
+    res.sendFile(path.join(__dirname, '../', 'views', 'users.html'));
+});
+
+module.export = router;
+```
+
+### Root Path
+
+```js
+// utils/path.js
+const path = require('path');
+module.export = path.dirname(process.mainModule.filename);
+```
+
+```js
+const rootDir = require('../utils/path.js');
+
+router.get('/users', (req, res, next) => {
+    res.sendFile(path.join(rootDir, 'views', 'users.html'));
+});
+```
+
+### Serving Static Files
+
+```js
+app.use(express.static(path.join(__dirname, 'public')))
+```
+
+### Using View Engines 
+
+```js
+// app.js
+const express = require('express');
+const app = express();
+
+app.set('view engine', 'pug');
+app.set('views', 'views');
+```
+
+```js
+// routes/admin.js
+const express = require('express');
+const router = express.Router();
+
+router.get('/users', (req, res, next) => {
+    res.render('users');
+});
+```
+
+### Model View Controller
+
+**Models**
+* Represents data.
+* Work with data: save, update, fetch, etc.
+
+**Views**
+* Represents what users see.
+* Decoupled from your application code.  
+
+**Controllers**
+* Connection points between models and views.
+* Contains the logic between models and views. 
