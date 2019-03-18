@@ -493,3 +493,69 @@ for i, v range x {
     fmt.Printf("ind %d, val %d", i, v)
 }
 ```
+
+### Slices
+
+An **slice** is a windows on an **underlying array**. An array has three elements:
+
+* **Pointer** - indicates the start of the slice.
+* **Lenght** - is the number of elts in the slice.
+* **Capacity** - is maximum number of elts. 
+
+```go
+arr := [...]string{"a", "b", "c", "d", "e", "f", "g"}
+
+// Slices
+s1 := arr[1:3] // Includes "b", "c"
+s2 := arr[2:5] // Includes "c", "d", "e", "f"
+
+// Accessing slices
+fmt.Printf(s1[1]) // Result: "c"
+fmt.Printf(s2[0]) // Result: "c"
+```
+
+#### Slice functions
+
+* `len()` - function returns the length.
+* `cap()` - function returns the capacity.
+
+```go
+a1 := [3]string{"a", "b", "c"}
+
+s1 := a1[0:1]
+
+fmt.Printf(len(s1)) // Result: 1
+fmt.Printf(cap(s1)) // Result: 3
+```
+
+#### Slice literals
+
+```go
+s1 := []int{1, 2, 3}
+```
+
+### Variable Slices
+
+#### `make()`
+
+The function `make()` creates a slice (and array). It could receive two or three arguments:
+
+* **type** and **capacity**.
+* **type**, **capacity** and **length**.
+
+```go
+// Creating an slice using make(), specifing type and capacity
+sl := make([]int, 10)
+
+// Creating an slice using make(), specifing type, capacity and length
+sl := make([]int, 10, 15)
+```
+
+#### `append()`
+
+The slice's size could be increased by `append()`. Adds elements to the end of the slice, and inserts into underlying array. It increases length of the array if necesary. 
+
+```go
+sl := make([]int, 0, 3)
+sl = append(sl, 100)
+```
