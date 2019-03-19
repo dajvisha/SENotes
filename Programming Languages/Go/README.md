@@ -639,3 +639,60 @@ p1.name = "joe"
 // Accesssing a value
 name = p1.name
 ```
+
+## Protocols and Formats
+
+### Procols Packages
+
+* `net`- TCP/IP and socket programming. 
+* `net/http` - Web communication protocol.
+
+```go
+// net package
+net.Dial("tcp", "uci.edu:80")
+
+// net/http package
+http.Get(www.uci.edu)
+```
+
+### JSON
+
+```go
+struct type Person {
+    name string
+    addr string
+    phone string
+}
+
+personOne := Person(
+    name: "joe",
+    addr: "street",
+    phone: "123"
+)
+```
+
+```json
+{
+    "name": "joe",
+    "addr": "street",
+    "phone": "123"
+}
+```
+
+#### `Marshal()`
+
+`Marshal()` function takes a **Go Object** and returns a JSON representation as `[]byte`.
+
+```go
+byteArray, err := json.Marshal(personOne)
+```
+
+### `Unmarshal()`
+
+`Marshal()` function converts a `[]byte` intto a **Go Object**.
+
+```go
+var personTwo Person
+
+err := json.Unmarshal(byteArray, &personTwo)
+```
