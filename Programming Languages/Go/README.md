@@ -696,3 +696,49 @@ var personTwo Person
 
 err := json.Unmarshal(byteArray, &personTwo)
 ```
+
+## File Access
+
+You can perform the followin basic operations when working with files:
+
+1. **Open** - get handle for access.
+2. **Read** - read bytes into `[]byte`.
+3. **Write** - write `[]byte`into file. 
+4. **Close** - release handle.
+5. **Seek** - move read/write head.
+
+### `ioutil` File Read
+
+```go
+// Reading a file
+dat, err := ioutil.ReadFile("test.txt")
+
+// Writing into a file
+dat = "Hello, world"
+err := ioutil.WriteFile("outfile.txt", dat, 0777)
+```
+
+`dat` is an `[]byte` filled with contents of entire file. 
+
+### `os` Package File Access
+
+* `os.Open()` - opens a file. 
+* `os.Close()` - closes a file. 
+* `os.Read()` - reads from a file into a `[]byte`.
+* `os.Write()` - write a `[]byte` into a file. 
+
+```go
+// Reading a file example
+f, err := os.Open("dt.txt")
+barr := make([]byte, 10)
+nb, err := f.Read(barr)
+f.Close()
+```
+
+```go
+// Writing into a file example
+f, err := os.Create("dt.txt")
+barr := []byte{1, 2, 3}
+nb, err := f.Write(barr)
+nb, err := f.WriteString("Hi")
+```
