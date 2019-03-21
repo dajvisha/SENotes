@@ -3,6 +3,7 @@
 <img src="https://bit.ly/2ziR5mN" width="250"/>
 
 **JavaScript** is a:
+
 * **Weakly Typed Language** 
     * No explicit type assignment
     * Data types can be switched dynamically
@@ -53,7 +54,40 @@ JavaScript has **dynamic typing**, data types are automatically assigned to vari
 
 ### Var, Let and Const
 
-Description here. 
+#### `var`
+
+* It is **function scoped**.
+* It returns `undefined` when accessing a variable before it's declared. 
+
+```js
+// Undefined example
+console.log(discount); // undefined
+let discount = 50;
+```
+
+#### `let`
+
+* It is **block scoped**.
+* It returns `ReferenceError` when accessing a variable before it's declared. 
+
+```js
+// ReferenceError example
+console.log(discount); // ReferenceError
+let discount = 50;
+```
+
+#### `const`
+
+* It declares a value which cannot be changed. 
+* If you declare a `const` with a type `object` or `array` it is mutable, because you are not changing the **type**.
+
+```js
+let person = {
+	name: 'person name'
+};
+
+person['address'] = 'person address';
+```
 
 ### Difference between === and ==
 
