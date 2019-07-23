@@ -1,3 +1,77 @@
+## Protocols and HTTP
+
+#### Protocols
+
+A protocol is a set of rules which determine how to communicate with the resources in a network. It defines: 
+
+* Syntax
+* Semantics
+* Time
+
+#### HTTP
+
+Hyper-Text Transfer Protocol. HTTP is a client-server protocol; the interations that are mediated via the HTTP protocol, are always initiated by a client which wants to access or request some resource on the server.
+
+HTTP can be described as pull protocol. Communication is initiated by the client sending an HTTP Request to the server, while the server responds with a response message. 
+
+#### HTTP Requests
+
+HTTP menssage structure:
+
+* **Header**
+    * **Request Line** (HTTP Verb, URI, HTTP Version)
+    * **Optional Request Headers**
+* **Body**
+
+**Example**:
+
+```
+GET puppies.html HTTP/1.1
+Host: wwww.puppyshelter.com
+Accept: image/gif, image/jpeg, */*
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/4.0
+Content-Length: 35
+
+puppyId=12345&name=Fido+Simpson
+```
+
+#### HTTP Response
+
+HTTP response message structure:
+
+* **Header** 
+    * **Status Line** (HTTP Version, Status Code, Reason Phrase)
+    * **Optional Response Headers**
+* **Body**
+ 
+Example:
+
+```
+HTTP/1.1 200 OK
+Date: Fri, 04 Sep 2015 01:11:12 GMT
+Server: Apache/1.3.29 (Win32)
+Last-Modified: Sat, 07 Feb 2014
+ETag: "0-23-4024c3a5":
+ContentType: text/html
+ContentLength: 35
+Connection: KeepAlive
+KeepAlive: timeout=15, max=100
+
+<h1>Welcome to the home page!</h1>
+```
+
+#### HTTP verbs
+
+The HTTP verbs are:
+
+* **GET**: Read
+* **POST**: Create
+* **PUT**: Update/Create
+* **PATCH**: Update
+* **DELETE**: Delete
+
 # RESTful APIs
 
 ### What are APIs?
@@ -117,67 +191,3 @@ There are two kinds of states:
 
 * **Application state**: Resides in the client. It is information about where you are in the interaction. It is used during your session with an application.  
 * **Resource state**: Resides in the server. 
-
-
-## HTTP
-
-HTTP can be described as pull protocol. Communication is initiated by the client sending an HTTP Request to the server, while the server responds with a response message. 
-
-### HTTP Requests
-
-HTTP menssage structure:
-
-* **Header**
-    * **Request Line** (HTTP Verb, URI, HTTP Version)
-    * **Optional Request Headers**
-* **Body**
-
-**Example**:
-
-```
-GET puppies.html HTTP/1.1
-Host: wwww.puppyshelter.com
-Accept: image/gif, image/jpeg, */*
-Accept-Language: en-us
-Accept-Encoding: gzip, deflate
-User-Agent: Mozilla/4.0
-Content-Length: 35
-
-puppyId=12345&name=Fido+Simpson
-```
-
-### HTTP Response
-
-HTTP response message structure:
-
-* **Header** 
-    * **Status Line** (HTTP Version, Status Code, Reason Phrase)
-    * **Optional Response Headers**
-* **Body**
- 
-Example:
-
-```
-HTTP/1.1 200 OK
-Date: Fri, 04 Sep 2015 01:11:12 GMT
-Server: Apache/1.3.29 (Win32)
-Last-Modified: Sat, 07 Feb 2014
-ETag: "0-23-4024c3a5":
-ContentType: text/html
-ContentLength: 35
-Connection: KeepAlive
-KeepAlive: timeout=15, max=100
-
-<h1>Welcome to the home page!</h1>
-```
-
-### HTTP verbs
-
-The HTTP verbs are:
-
-* **GET**: Read
-* **POST**: Create
-* **PUT**: Update/Create
-* **PATCH**: Update
-* **DELETE**: Delete
-
